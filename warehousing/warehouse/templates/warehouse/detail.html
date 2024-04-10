@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Warehouse Details {% endblock %}
+
+{% block content %}
+
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+          <th scope="col">inventory</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in warehouse.goods.all %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.inventory}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
+{% endblock %}

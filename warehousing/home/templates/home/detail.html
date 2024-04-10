@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Transfer Details {% endblock %}
+
+{% block content %}
+
+    {% if transfer.mode == 'Ex' %}
+        <p>Mode : Exit</p>
+    {% else %}
+        <p>Mode : Entry</p>
+    {% endif %}
+
+    <p>From : {{transfer.from_employee}}</p>
+    <p>To : {{transfer.to_employee}}</p>
+    <p>Date : {{transfer.date}}</p>
+    <br>
+    
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Goods</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in transfer.items.all %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{item.goods.name}}</td>
+            <td>{{item.quantity}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
+{% endblock %}

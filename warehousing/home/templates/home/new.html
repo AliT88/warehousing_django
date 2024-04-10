@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} New Transfer {% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'home:add_goods' %}" class="btn btn-info">Add Goods</a><br><br>
+    {% if goods %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Goods</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key, value in goods.items %}
+                <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{value.name}}</td>
+                <td>{{value.quantity}}</td>
+                <td><a href="{% url 'home:remove' key %}">remove</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form_trans.as_p }}
+        {{ form_items.as_p }}
+        <input type="submit" value="Create">
+    </form>
+
+{% endblock %}

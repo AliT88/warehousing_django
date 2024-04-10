@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Transfer {% endblock %}
+
+{% block content %}
+    
+    <a href="{% url 'home:new' %}" class="btn btn-primary">New Transfer</a>
+    <br><br><br><br>
+
+    <form action="" method="get" novalidate>
+        {{ form.as_p }}
+        <input type="submit" value="Report">
+    </form>
+    <br><br>
+    <h2>Transfers List</h2>
+    {% for tr in transfer %}
+        <a href="{% url 'home:detail' tr.id %}">{{forloop.counter}} --  {{tr.id}} {{tr.mode}}</a><br>
+    {% endfor %}
+
+{% endblock %}
