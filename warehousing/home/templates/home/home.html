@@ -7,14 +7,34 @@
     <a href="{% url 'home:new' %}" class="btn btn-primary">New Transfer</a>
     <br><br><br><br>
 
-    <form action="" method="get" novalidate>
-        {{ form.as_p }}
-        <input type="submit" value="Report">
-    </form>
+    <div style="color: white;" class="card bg-dark p-2 col-md-6">
+        <h2>Reporting</h2>
+        <form action="" method="get" novalidate>
+            {{ form.as_table }}
+            <input type="submit" value="Report"  style="background-color: aquamarine;">
+        </form>
+    </div>
     <br><br>
     <h2>Transfers List</h2>
-    {% for tr in transfer %}
-        <a href="{% url 'home:detail' tr.id %}">{{forloop.counter}} --  {{tr.id}} {{tr.mode}}</a><br>
-    {% endfor %}
-
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Transfer Code</th>
+            <th scope="col">Mode</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tr in transfer %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td><a href="{% url 'home:detail' tr.id %}">{{tr.id}}</td></a>
+              <td>{{tr.mode}}</td>
+              <td>{{tr.date}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+   
 {% endblock %}

@@ -18,7 +18,7 @@ class Goods(models.Model):
         return True
     
     def UpdateInventory(self, mode, quantity):
-        if mode == 'Ex':
+        if mode == 'exit':
             self.inventory -= quantity
         else:
             self.inventory += quantity

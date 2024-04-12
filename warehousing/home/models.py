@@ -6,8 +6,8 @@ from django.core.validators import MinValueValidator
 
 class Transfer(models.Model):
     choices = [
-        ('En', 'Entry'),
-        ('Ex', 'Exit')
+        ('entry', 'Entry'),
+        ('exit', 'Exit')
     ]
     mode = models.CharField(max_length=10, choices=choices)
     from_employee = models.ForeignKey(
@@ -19,6 +19,9 @@ class Transfer(models.Model):
         related_name='transfers_to', null=True
         )
     date = models.DateTimeField()
+
+    class Meta:
+        ordering = ('-date',)
 
 
 class TransferItem(models.Model):

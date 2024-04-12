@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Transfer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('mode', models.CharField(choices=[('En', 'Entry'), ('Ex', 'Exit')], max_length=10)),
+                ('mode', models.CharField(choices=[('entry', 'Entry'), ('exit', 'Exit')], max_length=10)),
                 ('date', models.DateTimeField(auto_now=True)),
                 ('from_employee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='transfers_from', to='employee.employee')),
                 ('to_employee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='transfers_to', to='employee.employee')),

@@ -12,7 +12,14 @@ class TransferView(View):
         if request.GET.get('from_date'):
             tr = tr.filter(date__gte=request.GET.get('from_date'))
         if request.GET.get('to_date'):
-            tr = tr.filter(date__lte=request.GET.get('to_date'))    
+            tr = tr.filter(date__lte=request.GET.get('to_date'))   
+        if request.GET.get('mode'):
+            tr = tr.filter(mode=request.GET.get('mode'))   
+        if request.GET.get('goods'):
+            for i in tr:
+                item_list = [j.goods.name for j in i.items.all()]
+                if request.GET.get('goods') not in item_list:
+                    tr = tr.exclude(id=i.id)   
         form = ReportForm
         return render(request, 'home/home.html', {'transfer':tr, 'form':form})
 
@@ -29,7 +36,7 @@ class NewTransferView(View):
         form_trans = NewTransferForm(request.POST)
         if form_trans.is_valid():
             cd_trans = form_trans.cleaned_data
-            if cd_trans['mode'] == 'Ex':
+            if cd_trans['mode'] == 'exit':
                 for item in request.session.get('goods').values():
                     if not Goods.objects.get(name=item['name']).CheckInventory(int(item['quantity'])):
                         messages.warning(request, f'Your request is more than inventory of {item["name"]}', 'warning')
