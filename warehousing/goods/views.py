@@ -20,7 +20,7 @@ class NewGoodsView(View):
         form = NewGoodsForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'New goods created successfully.')
+            messages.success(request, 'کالای جدید با موفقیت ثبت گردید', 'success')
         return redirect('goods:home')
 
 

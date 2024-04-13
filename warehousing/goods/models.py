@@ -4,9 +4,7 @@ from django.core.validators import MinValueValidator
 
 class Goods(models.Model):
     name = models.CharField(max_length=100)
-    warehouse = models.ForeignKey(
-        Warehouse, related_name='goods', on_delete=models.SET_NULL, null=True
-    )
+    warehouse = models.ForeignKey(Warehouse, related_name='goods', on_delete=models.SET_NULL, null=True)
     inventory = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     def __str__(self):

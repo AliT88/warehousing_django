@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
-
-{% block title %} Transfer {% endblock %}
+{% load jformat %}
+{% block title %} حواله {% endblock %}
 
 {% block content %}
     
-    <a href="{% url 'home:new' %}" class="btn btn-primary">New Transfer</a>
+    <a href="{% url 'home:new' %}" class="btn btn-primary">حواله جدید</a>
     <br><br><br><br>
 
-    <div style="color: white;" class="card bg-dark p-2 col-md-6">
-        <h2>Reporting</h2>
+    <div style="background-color: rgb(176, 182, 236);" class="card p-2 col-md-6">
+        <h2>گزارش گیری</h2><br>
         <form action="" method="get" novalidate>
             {{ form.as_table }}
-            <input type="submit" value="Report"  style="background-color: aquamarine;">
+            <input type="submit" value="گزارش"  style="background-color: aquamarine;">
         </form>
+        {{form.media}}
     </div>
     <br><br>
-    <h2>Transfers List</h2>
+    <h2>لیست حواله ها</h2>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Transfer Code</th>
-            <th scope="col">Mode</th>
-            <th scope="col">Date</th>
+            <th scope="col">کد حواله</th>
+            <th scope="col">نوع</th>
+            <th scope="col">تاریخ</th>
           </tr>
         </thead>
         <tbody>
@@ -30,8 +31,8 @@
             <tr>
               <th scope="row">{{forloop.counter}}</th>
               <td><a href="{% url 'home:detail' tr.id %}">{{tr.id}}</td></a>
-              <td>{{tr.mode}}</td>
-              <td>{{tr.date}}</td>
+              <td>{% if tr.mode == 'exit' %}خروج {% else %} ورود {% endif %}</td>
+              <td>{{tr.date|jformat:"%Y/%m/%d"}}</td>
             </tr>
           {% endfor %}
         </tbody>

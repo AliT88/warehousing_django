@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
-
+{% load jformat %}
 {% block title %} Transfer Details {% endblock %}
 
 {% block content %}
 
     {% if transfer.mode == 'exit' %}
-        <p>Mode : Exit</p>
+        <p>نوع : خروج</p>
     {% else %}
-        <p>Mode : Entry</p>
+        <p>نوع : ورود</p>
     {% endif %}
 
-    <p>From : {{transfer.from_employee}}</p>
-    <p>To : {{transfer.to_employee}}</p>
-    <p>Date : {{transfer.date}}</p>
+    <p>تحویل دهنده : {{transfer.from_employee}}</p>
+    <p>تحویل گیرنده : {{transfer.to_employee}}</p>
+    <p>تاریخ : {{transfer.date|jformat:"%Y/%m/%d"}}</p>
     <br>
     
   <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Goods</th>
-          <th scope="col">Quantity</th>
+          <th scope="col">کالاها</th>
+          <th scope="col">تعداد</th>
         </tr>
       </thead>
       <tbody>

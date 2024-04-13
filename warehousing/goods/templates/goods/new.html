@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} New Goods {% endblock %}
+{% block title %} تعریف کالای جدید {% endblock %}
 
 {% block content %}
 
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Create">
+        <input type="submit" value="ایجاد">
     </form>
 
 {% endblock %}

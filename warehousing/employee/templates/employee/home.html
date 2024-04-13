@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %} Employee {% endblock %}
+{% block title %} کارمندان {% endblock %}
 
 {% block content %}
 
-    <a href="{% url 'employee:new' %}" class="btn btn-primary">New Employee</a>
+    <a href="{% url 'employee:new' %}" class="btn btn-primary">ایجاد کارمند جدید</a>
     <br><br><br><br>
-    <h2>Employees List</h2>
-    {% for em in employees %}
-        <p>{{em.name}}</p>
-    {% endfor %}
-    
+    <h2>لیست کارمندان</h2>
+    <div style="padding: 30px;">
+        {% for em in employees %}
+            <p>{{forloop.counter}} - {{em.name}}</p>
+        {% endfor %}
+    </div>
 {% endblock %}

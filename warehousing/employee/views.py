@@ -20,6 +20,6 @@ class NewEmployeeView(View):
         form = NewEmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'New employee created successfully')
+            messages.success(request, 'کارمند جدید با موفقیت ثبت گردید.', 'success')
         return redirect("employee:home")
             

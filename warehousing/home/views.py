@@ -39,7 +39,7 @@ class NewTransferView(View):
             if cd_trans['mode'] == 'exit':
                 for item in request.session.get('goods').values():
                     if not Goods.objects.get(name=item['name']).CheckInventory(int(item['quantity'])):
-                        messages.warning(request, f'Your request is more than inventory of {item["name"]}', 'warning')
+                        messages.warning(request, f'درخواست شما برای کالای {item["name"]} بیشتر از موجودی انبار می باشد.', 'warning')
                         return redirect('home:new')
             
             tr = form_trans.save()
@@ -52,7 +52,7 @@ class NewTransferView(View):
                 )
                 gd.UpdateInventory(tr.mode, int(item['quantity']))
             del request.session['goods']
-            messages.success(request, 'Your transfer created successfully.')
+            messages.success(request, 'حواله شما با موفقیت ثبت گردید.')
         return redirect('home:home')
 
 

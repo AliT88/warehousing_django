@@ -20,7 +20,7 @@ class NewWarehouseView(View):
         form = NewWarehouseForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'New warehouse created successfully.', 'success')
+            messages.success(request, 'انبار جدید با موفقیت ثبت گردید.', 'success')
         return redirect('warehouse:home')
 
 

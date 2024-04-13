@@ -6,4 +6,7 @@ class NewWarehouseForm(forms.ModelForm):
     class Meta:
         model = Warehouse
         fields = "__all__"
+        labels = {
+            'name' : "نام"
+        }
     

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %} Warehouse {% endblock %}
+{% block title %} انبارها {% endblock %}
 
 {% block content %}
 
-    <a href="{% url 'warehouse:new' %}" class="btn btn-primary" >New Warehouse</a>
+    <a href="{% url 'warehouse:new' %}" class="btn btn-primary" >انبار جدید</a>
     <br><br><br><br>
-    <h2>Warehouse List</h2>
+    <h2>لیست انبارها</h2>
     <br>
     {% for wh in warehouses %}
         <a style="padding: 5px 20px;" href="{% url 'warehouse:detail' wh.id%}">
